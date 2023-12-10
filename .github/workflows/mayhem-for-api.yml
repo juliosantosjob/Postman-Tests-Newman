@@ -16,5 +16,5 @@ jobs:
       - uses: actions/checkout@master
       - uses: matt-ball/newman-action@master
         with:
-          collection: Test_reqres.json
-          environment: Env_reqres.json
+          collection: ./Test_reqres.json
+          environment: ./Env_reqres.json
