@@ -12,12 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Postman CLI
-        run: |
-          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-      - name: Login to Postman CLI
-        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-      - name: Run API tests
-        run: |
-          postman collection run "${{ github.workspace }}/postman/collections/ReqRes API.json" -e "15370526-a1ec5409-aab9-4301-895e-1a8da5145338" --integration-id "154488-${{ github.run_id }}"
-          # Lint your API using Postman CLI
-          postman api lint 04a77985-7c7c-41de-92a8-894f3cdcc346 --integration-id 154488
+
+      - uses: actions/checkout@master
+      - uses: matt-ball/newman-action@master
+        with:
+          collection: Test_reqres.json
+          environment: postman_environment.json
