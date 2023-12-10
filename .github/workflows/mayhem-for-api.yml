@@ -14,4 +14,4 @@ jobs:
       - uses: matt-ball/newman-action@master
         with:
           collection: ./postman/tests.json
-          environment: 15370526-a1ec5409-aab9-4301-895e-1a8da5145338
+          environment: ./postman/env.json
