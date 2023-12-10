@@ -21,10 +21,16 @@ jobs:
       - name: Runner Tests with report
         run: newman run tests.json -e env.json -r htmlextra
 
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Output the results
+        uses: actions/upload-artifact@v3
         with:
-          personal_token : ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./newman
+            name: reporters
+            path: ./newman
+
+      - name: Test marketplace actions
+        uses: PavanMudigonda/html-reporter-github-pages@v1.2
+        id: test-report
+        with:
+          test_results: ./newman
+          gh_pages: gh-pages
+          results_history: results-history
