@@ -17,4 +17,4 @@ jobs:
         run: npm install -g newman
   
       - name: Runner Tests
-        run: newman run test.json -e env.json
+        run: newman run tests.json -e env.json
