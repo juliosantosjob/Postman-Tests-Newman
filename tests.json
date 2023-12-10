@@ -10,7 +10,7 @@
 			"name": "Login",
 			"item": [
 				{
-					"name": "- Login success",
+					"name": "Scenario: Login success",
 					"event": [
 						{
 							"listen": "test",
@@ -53,7 +53,7 @@
 					"response": []
 				},
 				{
-					"name": "- Email blank",
+					"name": "Scenario: Email blank",
 					"event": [
 						{
 							"listen": "test",
@@ -96,7 +96,7 @@
 					"response": []
 				},
 				{
-					"name": "- Password blank",
+					"name": "Scenario: Password blank",
 					"event": [
 						{
 							"listen": "test",
@@ -139,7 +139,7 @@
 					"response": []
 				},
 				{
-					"name": "- User not found",
+					"name": "Scenario: User not found",
 					"event": [
 						{
 							"listen": "test",
@@ -187,7 +187,7 @@
 			"name": "Register",
 			"item": [
 				{
-					"name": "- Register successful",
+					"name": "Scenario: Register successful",
 					"event": [
 						{
 							"listen": "test",
@@ -240,7 +240,7 @@
 					"response": []
 				},
 				{
-					"name": "- User not defined",
+					"name": "Scenario: User not defined",
 					"event": [
 						{
 							"listen": "test",

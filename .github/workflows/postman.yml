@@ -14,7 +14,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: install newman
-        run: npm install -g newman
+        run: |
+            npm install -g newman
+            npm install -g newman-reporter-htmlextra
   
       - name: Runner Tests with report
         run: newman run tests.json -e env.json -r htmlextra
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: ./newman
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
