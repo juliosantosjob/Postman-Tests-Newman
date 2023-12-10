@@ -14,4 +14,4 @@ jobs:
       - uses: matt-ball/newman-action@master
         with:
           collection: ./postman/tests.json
-          environment: PMAK-65754315e2b8394d5231b2c2-XXXX
+          environment: ${{secrets.BASEURL}}
