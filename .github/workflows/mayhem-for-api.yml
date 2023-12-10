@@ -17,7 +17,7 @@ jobs:
         run: npm install -g newman
   
       - name: Runner Tests with report
-        run: newman run tests.json -e env.json -g htmlextra
+        run: newman run tests.json -e env.json -r htmlextra
 
       - name: Deploy to GitHub Pages
         if: always()
