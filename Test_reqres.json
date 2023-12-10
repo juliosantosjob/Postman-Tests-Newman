@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "0c77dd8f-e204-4863-85d2-b5b4778bfd79",
+		"name": "ReqRes API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15370526"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "- Login success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code 200', function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"    pm.expect(responseJson).to.have.property('token');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomEmail}}\",\r\n    \"password\": \"cityslicka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/login",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "- Email blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Missing email', function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(pm.response.code).to.equal(400);\r",
+									"    pm.expect(responseJson.error).to.equal('Missing email or username');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"cityslicka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/login",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "- Password blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Missing password', function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(pm.response.code).to.equal(400);\r",
+									"    pm.expect(responseJson.error).to.equal('Missing password');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/login",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "- User not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Not found', function () { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(pm.response.code).to.equal(400);\r",
+									"    pm.expect(responseJson.error).to.equal('user not found');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user1312@gmail.com\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/login",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "- Register successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Register user', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"    pm.expect(responseJson).to.have.property('id');\r",
+									"    pm.expect(responseJson).to.have.property('token');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomEmail}}\",\r\n    \"password\": \"cityslicka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/register",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "- User not defined",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('User not defined', () => { \r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(pm.response.code).to.equal(400);\r",
+									"    pm.expect(responseJson.error).to.equal('Note: Only defined users succeed registration');\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user_123@gmail.com\",\r\n    \"password\": \"cityslicka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/register",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "Updated user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const date = pm.variables.get('currentDate');\r",
+									"const name = pm.variables.get('randomName');\r",
+									"\r",
+									"pm.test('Updated user', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"    pm.expect(responseJson.updatedAt).to.contain(date);\r",
+									"    pm.expect(responseJson.email).to.eql(name);\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{randomName}}\",\r\n    \"password\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reqres}}/users/2",
+							"host": [
+								"{{reqres}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"function getRandom() {",
+					"    const emailR = [",
+					"    'eve.holt@reqres.in', ",
+					"    'michael.lawson@reqres.in', ",
+					"    'lindsay.ferguson@reqres.in', ",
+					"    'tobias.funke@reqres.in', ",
+					"    'byron.fields@reqres.in',",
+					"  ];",
+					"",
+					"  const random = Math.floor(Math.random() * emailR.length);",
+					"  return emailR[random];",
+					"}",
+					"",
+					"function getRandomName() {",
+					"    const emailR = [",
+					"    'cerulean', ",
+					"    'morpheus',",
+					"    'fuchsia rose'",
+					"  ];",
+					"  const random = Math.floor(Math.random() * emailR.length);",
+					"  return emailR[random];",
+					"}",
+					"",
+					"function getCurrentDate() {",
+					"  const actualDate = new Date();",
+					"  const day = actualDate.getDate().toString().padStart(2, '0');",
+					"  const month_ = actualDate.getMonth() + 1;",
+					"  const Year = actualDate.getFullYear();",
+					"  const month = month_.toString().padStart(2, '0');",
+					"  return `${Year}-${month}-${day}`;",
+					"}",
+					"",
+					"function getRandomValue() {",
+					"  const minValue = 55.00;",
+					"  const maxValue = 100.00;",
+					"  const randomValue = Math.random() * (maxValue - minValue) + minValue;",
+					"  return randomValue.toFixed(2);",
+					"}",
+					"",
+					"pm.globals.set('randomEmail', getRandom());",
+					"pm.globals.set('randomName', getRandomName());",
+					"pm.globals.set('currentDate', getCurrentDate());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
