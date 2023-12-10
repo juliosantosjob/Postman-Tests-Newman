@@ -29,3 +29,11 @@ jobs:
           build_dir: ./newman
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Test marketplace actions
+        uses: PavanMudigonda/html-reporter-github-pages@v1.2
+        id: test-report
+        with:
+          test_results: ./newman
+          gh_pages: gh-pages
+          results_history: results-history
