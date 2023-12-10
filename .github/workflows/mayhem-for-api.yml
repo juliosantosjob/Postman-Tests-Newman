@@ -17,4 +17,4 @@ jobs:
         run: npm install -g newman
   
       - name: Runner Tests
-        run: newman run /postman/test.json -e /postman/env.json
+        run: newman run test.json -e env.json
