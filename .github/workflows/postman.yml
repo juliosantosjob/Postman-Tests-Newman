@@ -21,8 +21,10 @@ jobs:
       - name: Runner Tests with report
         run: newman run tests.json -e env.json -r htmlextra
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy report to Github Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./newman
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./newman
