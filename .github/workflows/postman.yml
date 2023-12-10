@@ -18,12 +18,3 @@ jobs:
   
       - name: Runner Tests with report
         run: newman run tests.json -e env.json -r htmlextra
-
-      - name: Deploy to GitHub Pages
-        if: always()
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: gh-pages
-          build_dir: ./newman
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
