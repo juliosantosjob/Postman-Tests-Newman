@@ -22,7 +22,17 @@ jobs:
         run: newman run tests.json -e env.json -r htmlextra
 
       - name: Deploy to GitHub Pages
+<<<<<<< HEAD
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./newman
+=======
+        if: always()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: ./newman
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> 19f03076af116240e0844b0d54a5bbf14db7d2fe
