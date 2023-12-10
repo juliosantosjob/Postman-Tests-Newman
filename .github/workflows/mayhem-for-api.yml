@@ -10,7 +10,11 @@ jobs:
   automated-api-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: install newman
+        run: npm install -g newman
   
       - name: Runner Tests
         run: newman run /postman/test.json -e /postman/env.json
